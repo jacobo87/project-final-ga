@@ -54,8 +54,8 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/registrer" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard:id" element={<Detail />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/dashboard:id" element={<Detail />} />
         <Route exact path="/routines" element={<Routines />} />
       </Routes>
     </AppContext.Provider>

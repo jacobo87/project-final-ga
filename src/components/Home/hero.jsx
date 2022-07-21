@@ -1,12 +1,14 @@
-import './hero.css';
+import "./hero.css";
 
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from "react";
 
-import AppContext from '../../AppContext';
-import CustomLink from '../elements/customLink';
-import CustomButton from '../elements/customButton';
+import AppContext from "../../AppContext";
+import CustomLink from "../elements/customLink";
+import CustomButton from "../elements/customButton";
+import { useNavigate } from "react-router-dom";
 
-const Hero = props => {
+const Hero = (props) => {
+  const navigate = useNavigate();
   const context = useContext(AppContext);
 
   // Estado para saber si el usuario ha iniciado sesion
@@ -14,18 +16,20 @@ const Hero = props => {
 
   const updateUser = () => {
     // Si hay algo en local storage de user, actualizamos user
-    if (localStorage.getItem('user')) {
-      setUser(localStorage.getItem('user'));
+    if (localStorage.getItem("user")) {
+      setUser(localStorage.getItem("user"));
     } else {
       setUser(null);
     }
   };
 
-  const onClickContinue = event => {
+  const onClickContinue = (event) => {
     //Esto es temporal
-    localStorage.setItem('user', 'user');
-    window.location.href = '/dashboard';
-    // console.log('Aqui no entra');
+    localStorage.setItem("user", "user");
+    // window.location.href = '/dashboard#';
+    navigate("/dashboard");
+    // this.context.router.transitionTo('/dashboard');
+    console.log("Aqui no entra");
   };
 
   useEffect(() => {
@@ -33,16 +37,16 @@ const Hero = props => {
     updateUser();
 
     function storageEventHandler(event) {
-      console.log('Usuario ha cambiado');
-      if (event.key === 'user') {
+      console.log("Usuario ha cambiado");
+      if (event.key === "user") {
         updateUser();
       }
     }
 
     // Añadimos el evento storageEventHandler, este evento se ejecuta cuando cambie el localstorage
-    window.addEventListener('storage', storageEventHandler);
+    window.addEventListener("storage", storageEventHandler);
     return () => {
-      window.removeEventListener('storage', storageEventHandler);
+      window.removeEventListener("storage", storageEventHandler);
     };
   }, []);
 
