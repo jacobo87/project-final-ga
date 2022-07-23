@@ -91,8 +91,7 @@ const Footer = (props) => {
       </div>
       <div className="copy-right">
         <p>
-          {context.language.FOOTER_COPYRIGHT}
-          {""}
+          {context.language.FOOTER_COPYRIGHT}{" "}
           <a
             href="https://github.com/jacobo87"
             target="_blank"
