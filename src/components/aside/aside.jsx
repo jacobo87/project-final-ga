@@ -1,59 +1,62 @@
-import React from 'react';
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import CustomButton from '../../components/elements/customButton';
-import AppContext from '../../AppContext';
+import React from "react";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import CustomButton from "../../components/elements/customButton";
+import AppContext from "../../AppContext";
+import { useNavigate } from "react-router-dom";
 
-import './aside.css';
+import "./aside.css";
 
-const Aside = props => {
+const Aside = (props) => {
   const context = useContext(AppContext);
+  const navigate = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem('user');
-    window.dispatchEvent(new Event('storage'));
-    window.location.href = '/';
+    localStorage.removeItem("user");
+    window.dispatchEvent(new Event("storage"));
+    // window.location.href = '/';
+    navigate("./");
   };
 
   const iconsHeader = [
     {
       name: context.language.ASIDE_HOME,
-      src: './assets/icons/home.png',
-      url: '/dashboard',
-      alt: 'home',
+      src: "./assets/icons/home.png",
+      url: "/dashboard",
+      alt: "home",
     },
     {
       name: context.language.ASIDE_FAVO,
-      src: './assets/icons/favoritos.png',
-      url: '/dashboard',
-      alt: 'advance-mode',
+      src: "./assets/icons/favoritos.png",
+      url: "/dashboard",
+      alt: "advance-mode",
     },
     {
       name: context.language.ASIDE_EASY,
-      src: './assets/icons/class.png',
-      url: '/dashboard',
-      alt: 'easy-mode',
+      src: "./assets/icons/class.png",
+      url: "/dashboard",
+      alt: "easy-mode",
     },
     {
-      name: 'Crear rutina',
-      src: './assets/icons/class.png',
-      url: '/Routines',
-      alt: 'easy-mode',
+      name: "Crear rutina",
+      src: "./assets/icons/class.png",
+      url: "/Routines",
+      alt: "easy-mode",
     },
   ];
 
   const iconsFooter = [
     {
       name: context.language.ASIDE_SETTINGS,
-      src: './assets/icons/setting.png',
+      src: "./assets/icons/setting.png",
     },
     {
       name: context.language.ASIDE_HELP,
-      src: './assets/icons/help-web-button.png',
+      src: "./assets/icons/help-web-button.png",
     },
     {
       name: context.language.ASIDE_FEEDBACK,
-      src: './assets/icons/information-button.png',
+      src: "./assets/icons/information-button.png",
     },
   ];
 
